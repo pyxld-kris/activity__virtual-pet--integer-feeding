@@ -36,12 +36,12 @@ export default class Animal {
   }
 
   update() {
-    if (Math.random() < 0.02) {
+    if (Math.random() < 0.04) {
       var leftOrRight = Math.random();
       if (leftOrRight < 0.5) {
-        this.sprite.setVelocity(100, 0);
+        this.sprite.setVelocity(150, 0);
       } else {
-        this.sprite.setVelocity(-100, 0);
+        this.sprite.setVelocity(-150, 0);
       }
     }
 
