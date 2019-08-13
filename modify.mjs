@@ -1,5 +1,7 @@
-/**** WELCOME! *****************/
-/**** START MODIFYING HERE! ****/
+/**** WELCOME! *********************************************/
+/**** Start Modifying Here! ********************************/
+/**** After making a change: save this file, then press ****/
+/****     the refresh button above the game window! ********/
 
 // How many food items should we give to our pet?
 const NUM_FOODS = 0; // Integer variable
@@ -14,7 +16,7 @@ let scene = this; // Setting this variable for readability
 
 // This function creates one food item in our active game scene
 function createFood() {
-  let thisMeat = scene.physics.add.sprite(60+Math.floor(Math.random()*60), 10, 'meat');
+  let thisMeat = scene.physics.add.sprite(60+Math.floor(Math.random()*90), 10, 'meat');
   scene.physics.add.collider(thisMeat, scene.ground);
   scene.physics.add.collider(thisMeat, scene.pet.sprite, function() {
     thisMeat.destroy();
@@ -25,3 +27,5 @@ function createFood() {
 for (let i=0; i<NUM_FOODS; i++) {
   createFood();
 }
+
+/* eslint-enable */
