@@ -1,8 +1,15 @@
-/* eslint-disable */
-let scene = this; // Setting this variable for readability
+/**** WELCOME! *****************/
+/**** START MODIFYING HERE! ****/
 
 // How many food items should we give to our pet?
 const NUM_FOODS = 0; // Integer variable
+
+/**** GOODBYE! ************************************************/
+/**** STOP MODIFYING HERE (Unless you want to experiment!) ****/
+
+
+/* eslint-disable */ // Stops codesandbox from giving us annoying errors
+let scene = this; // Setting this variable for readability
 
 // This function creates one food item in our active game scene
 function createFood() {
@@ -17,19 +24,3 @@ function createFood() {
 for (let i=0; i<NUM_FOODS; i++) {
   createFood();
 }
-
-/*
-var PET_NAME = "Pet"; // String variable
-var NUM_FOOD = 0; // Integer variable
-*/
-
-/*
-scene.ball2 = new Ball(scene, 90, 10);
-scene.physics.add.collider(scene.ball2.sprite, scene.ground);
-scene.physics.add.collider(scene.ball2.sprite, scene.pet.sprite);
-*/
-
-//scene.meat = scene.physics.add.sprite(60, 10, 'meat');
-//scene.physics.add.collider(scene.meat, scene.ground);
-
-
