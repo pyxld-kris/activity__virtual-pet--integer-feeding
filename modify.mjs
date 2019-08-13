@@ -2,7 +2,7 @@
 let scene = this; // Setting this variable for readability
 
 // How many food items should we give to our pet?
-var NUM_FOODS = 3; // Integer variable
+var NUM_FOODS = 0; // Integer variable
 
 // This function creates one food item in our active game scene
 function createFood() {
