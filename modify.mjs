@@ -9,6 +9,7 @@ const NUM_FOODS = 0; // Integer variable
 
 
 /* eslint-disable */ // Stops codesandbox from giving us annoying errors
+
 let scene = this; // Setting this variable for readability
 
 // This function creates one food item in our active game scene
