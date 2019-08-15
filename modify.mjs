@@ -9,6 +9,17 @@ const NUM_FOODS = 0; // Integer variable
 /**** GOODBYE! ************************************************/
 /**** STOP MODIFYING HERE (Unless you want to experiment!) ****/
 
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
+/*/
 
 /* eslint-disable */ // Stops codesandbox from giving us annoying errors
 

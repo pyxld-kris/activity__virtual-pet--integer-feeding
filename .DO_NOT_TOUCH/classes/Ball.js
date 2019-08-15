@@ -2,41 +2,42 @@ import Phaser from "phaser";
 
 export default class Ball extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y);
+    super(scene, x, y, "ball");
 
     console.log("creating ball - " + x);
 
     this.scene = scene;
 
-    this.sprite = scene.physics.add
-      .sprite(x, y, "ball", 0)
+    scene.add.existing(this);
+    scene.physics.add
+      .existing(this)
+      .setCollideWorldBounds(true)
       .setDrag(5, 5)
       .setFriction(0, 0)
       .setMaxVelocity(200, 400)
-      .setBounce(0.6);
-
-    // Let's make something happen when we click on this animal
-    this.sprite
+      .setBounce(0.6)
       .setInteractive()
       .setOrigin() // fixes interactive offset issue
       .on("pointerdown", function(pointer, localX, localY, event) {
-        this.scene.physics.add.sprite(50, 10, "meat");
+        // Let's make something happen when we click on this animal
       });
 
-    this.sprite.setCollideWorldBounds(true);
-
-    scene.physics.add.collider(scene.pet.sprite, this.sprite, () => {
+    scene.physics.add.collider(scene.pet, this, () => {
       let scene = this.scene;
-      let posOffsetX = this.sprite.x - scene.pet.sprite.x;
-      let posOffsetY = this.sprite.y - scene.pet.sprite.y;
+      let posOffsetX = this.x - scene.pet.x;
+      let posOffsetY = this.y - scene.pet.y;
 
-      this.sprite.setVelocity(posOffsetX, -150);
+      this.setVelocity(posOffsetX, -150);
     });
   }
 
   update() {}
 
   destroy() {
-    this.sprite.destroy();
+    // Remove this object's update listener from the scene
+    //this.scene.events.removeListener("update", this.updateListener);
+
+    // Call this object's parent class destroy method
+    super.destroy();
   }
 }

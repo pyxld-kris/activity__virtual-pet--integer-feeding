@@ -45,12 +45,6 @@ class PlayScene extends Phaser.Scene {
     });
   }
 
-  // This function creates a pet and adds it to the scene
-  createPet() {
-    this.pet = new Animal(this, 30, 10);
-    this.pet.sprite.setCollideWorldBounds(true);
-  }
-
   create() {
     let halfGameWidth = this.game.config.width / 2;
     let halfGameHeight = this.game.config.height / 2;
@@ -66,14 +60,14 @@ class PlayScene extends Phaser.Scene {
     this.cloudRight = this.add.sprite(150, 5, "cloud");
 
     // Create pet
-    this.createPet();
+    this.pet = new Animal(this, 30, 10);
 
     // Create the ball
     this.ball = new Ball(this, 50, 10);
 
-    this.physics.add.collider(this.pet.sprite, this.ground);
-    this.physics.add.collider(this.ball.sprite, this.ground);
-    this.physics.add.collider(this.pet.sprite, this.ball.sprite);
+    this.physics.add.collider(this.pet, this.ground);
+    this.physics.add.collider(this.ball, this.ground);
+    this.physics.add.collider(this.pet, this.ball);
 
     const camera = this.cameras.main;
     const cursors = this.input.keyboard.createCursorKeys();
@@ -106,9 +100,7 @@ class PlayScene extends Phaser.Scene {
     this.loadModifyCode();
   }
 
-  update(time, delta) {
-    this.pet.update(time, delta);
-  }
+  update(time, delta) {}
 
   /* <Begin> helper functions added by Kris */
   //
