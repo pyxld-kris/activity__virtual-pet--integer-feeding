@@ -1,13 +1,21 @@
 /**** WELCOME! *********************************************/
-/**** Start Modifying Here! ********************************/
-/**** After making a change: save this file, then press ****/
-/****     the refresh button above the game window! ********/
+/**
+ * GOAL: Change the variable NUM_FOODS in order to feed the pet 
+ * enough to fill it up!
+ * 
+ * ----------------------------------------------------------
+ * After making a change: save this file, then press the refresh
+ * button above the game window!
+ * ----------------------------------------------------------
+ */
+/**************** Start Modifying Here! *********************/
+
 
 // How many food items should we give to our pet?
 const NUM_FOODS = 0; // Integer variable
 
 /**** GOODBYE! ************************************************/
-/**** STOP MODIFYING HERE (Unless you want to experiment!) ****/
+/**** Stop Modifying Here! (Unless you want to experiment!) ***/
 
 /*/
 /*/

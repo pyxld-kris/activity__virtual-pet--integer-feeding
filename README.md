@@ -4,4 +4,4 @@
 
 We're going to be modifying the "modify.mjs" file for this activity!
 
-Your goal: change the variable NUM_FOODS in order to feed the pet enough to fill it up!
+GOAL: Change the variable NUM_FOODS in order to feed the pet enough to fill it up!
