@@ -5,6 +5,7 @@ import Ball from "/.DO_NOT_TOUCH/classes/Ball.js";
 
 import Instruction from "./classes/Instruction";
 import InstructionSequence from "./classes/InstructionSequence";
+import ProgressMonitor from "./classes/ProgressMonitor";
 
 /* Lift classes to global scope */
 (function() {
@@ -96,6 +97,9 @@ class PlayScene extends Phaser.Scene {
       new Instruction(this, "This is your new pet", 2000),
       new Instruction(this, "Code to care for it", 2000)
     ]);
+
+    // Monitor this activity's success conditions
+    new ProgressMonitor(this);
 
     this.loadModifyCode();
   }
