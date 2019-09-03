@@ -1,15 +1,15 @@
 import Phaser from "phaser";
 
+// Load Dev Launchers learning engine code (consolidate into one entry point?)
+import DevLaunchers from "./classes/dev-launchers";
+
+// Load specific game stuff here
 import Animal from "/.DO_NOT_TOUCH/classes/Animal.js";
 import Ball from "/.DO_NOT_TOUCH/classes/Ball.js";
 
-import Instruction from "./classes/Instruction";
-import InstructionSequence from "./classes/InstructionSequence";
-import ProgressMonitor from "./classes/ProgressMonitor";
-
 /* Lift classes to global scope */
 (function() {
-  // We have to lift classes we need access to to the
+  // We have to lift classes we need access to into the
   //   global scope (stupid module scoping issue)
   // This is done so students can code in a clean script file (without
   //    having to use imports/exports, etc.)
@@ -92,14 +92,27 @@ class PlayScene extends Phaser.Scene {
       .setScrollFactor(0)
       .setResolution(3) // Makes text more crisp
       .setScale(0.5); // Makes text more crisp
-
-    new InstructionSequence(this, [
-      new Instruction(this, "This is your new pet", 2000),
-      new Instruction(this, "Code to care for it", 2000)
+    /*
+    new DevLaunchers.Instructions.InstructionSequence(this, [
+      new DevLaunchers.Instructions.Instruction(
+        this,
+        "This is your new pet",
+        2000
+      ),
+      new DevLaunchers.Instructions.Instruction(
+        this,
+        "Code to care for it",
+        2000
+      )
     ]);
-
+*/
     // Monitor this activity's success conditions
-    new ProgressMonitor(this);
+
+    new DevLaunchers.ProgressMonitor(this, function() {
+      if (this.scene.progressData.numFoodsCreated >= 3) {
+        console.log("SUCCESS!");
+      }
+    });
 
     this.loadModifyCode();
   }

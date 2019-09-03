@@ -4,8 +4,6 @@ export default class Ball extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, "ball");
 
-    console.log("creating ball - " + x);
-
     this.scene = scene;
 
     scene.add.existing(this);

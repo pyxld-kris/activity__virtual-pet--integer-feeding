@@ -12,7 +12,7 @@
 
 
 // How many food items should we give to our pet?
-const NUM_FOODS = 3; // Integer variable
+const NUM_FOODS = 0; // Integer variable
 
 /**** GOODBYE! ************************************************/
 /**** Stop Modifying Here! (Unless you want to experiment!) ***/
@@ -45,7 +45,6 @@ function createFood() {
   //  when activities are completed
   if (scene.progressData != undefined) {
     scene.progressData.numFoodsCreated = (scene.progressData.numFoodsCreated === undefined) ? 1 : scene.progressData.numFoodsCreated+1;
-    console.log('doin', scene.progressData.numFoodsCreated)
   }
 }
 

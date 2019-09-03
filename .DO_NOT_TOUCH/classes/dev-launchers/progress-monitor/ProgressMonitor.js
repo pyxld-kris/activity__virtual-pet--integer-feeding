@@ -1,10 +1,11 @@
 import Phaser from "phaser";
 
 export default class SuccessMonitor {
-  constructor(scene) {
+  constructor(scene, progressCheckFunc) {
     this.scene = scene;
+    this.progressCheckFunc = progressCheckFunc; // called in update 5% of time
 
-    // successData will be set at different points in the scene, depending on
+    // progressData will be set at different points in the scene, depending on
     //    individual lesson requirements. It is then checked against in
     //    update() to determine if the activity has been completed
     scene.progressData = {};
@@ -21,9 +22,7 @@ export default class SuccessMonitor {
     // Let's do them a certain percentage of the time, randomly
     if (Math.random() < 0.05) {
       // Randomly perform check 5% of the time
-      if (this.scene.progressData.numFoodsCreated >= 3) {
-        console.log("SUCCESS!");
-      }
+      this.progressCheckFunc.call(this);
     }
   }
 }
