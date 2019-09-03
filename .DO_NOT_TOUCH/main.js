@@ -1,177 +1,26 @@
 import Phaser from "phaser";
+import { config } from "./settings/config.js";
 
-// Load Dev Launchers learning engine code (consolidate into one entry point?)
-import DevLaunchers from "./classes/dev-launchers";
-
-// Load specific game stuff here
-import Animal from "/.DO_NOT_TOUCH/classes/Animal.js";
-import Ball from "/.DO_NOT_TOUCH/classes/Ball.js";
-
-/* Lift classes to global scope */
-(function() {
-  // We have to lift classes we need access to into the
-  //   global scope (stupid module scoping issue)
-  // This is done so students can code in a clean script file (without
-  //    having to use imports/exports, etc.)
-  window.Animal = Animal;
-  window.Ball = Ball;
-})();
+const game = new Phaser.Game(config, "Reload this window to see changes!");
 
 /*
- * evalWithinContext()
- * Allows a string of javascript code to be executed within the given scope/context
- * Used after fetching student code in order to run it within the current Phaser scene
- *     (Keeps student coding interface clean)
+ * Import and set up the specific dev launchers activity code
+ * to be injected into this game (Helps keep our games and lessons
+ * separate)
  */
-var evalWithinContext = function(context, code) {
-  (function(code) {
-    eval(code);
-  }.apply(context, [code]));
-};
-
-class PlayScene extends Phaser.Scene {
-  preload() {
-    this.load.image("sky", "/.DO_NOT_TOUCH/assets/sky.png");
-    this.load.image("ground", "/.DO_NOT_TOUCH/assets/ground.png");
-    this.load.image("cloud", "/.DO_NOT_TOUCH/assets/cloud.png");
-    this.load.image("meat", "/.DO_NOT_TOUCH/assets/meat.png");
-    this.load.image("ball", "/.DO_NOT_TOUCH/assets/ball.png");
-
-    // Load the pet's spritesheet
-    this.load.spritesheet("pet", "/.DO_NOT_TOUCH/assets/pet.png", {
-      frameWidth: 17,
-      frameHeight: 21,
-      margin: 0,
-      spacing: 0
-    });
-  }
-
-  create() {
-    let halfGameWidth = this.game.config.width / 2;
-    let halfGameHeight = this.game.config.height / 2;
-
-    // Create sky
-    this.sky = this.add.sprite(halfGameWidth, halfGameHeight, "sky");
-
-    // Create ground
-    this.ground = this.physics.add.staticSprite(halfGameWidth, 83, "ground");
-
-    // Create clouds
-    this.cloudLeft = this.add.sprite(50, 20, "cloud");
-    this.cloudRight = this.add.sprite(150, 5, "cloud");
-
-    // Create pet
-    this.pet = new Animal(this, 30, 10);
-
-    // Create the ball
-    this.ball = new Ball(this, 50, 10);
-
-    this.physics.add.collider(this.pet, this.ground);
-    this.physics.add.collider(this.ball, this.ground);
-    this.physics.add.collider(this.pet, this.ball);
-
-    const camera = this.cameras.main;
-    const cursors = this.input.keyboard.createCursorKeys();
-    camera.setBounds(0, 0, this.game.config.width, this.game.config.height);
-
-    this.add
-      .text(
-        Math.floor(this.game.config.width / 2),
-        Math.floor(this.game.config.height - 10),
-        "Your pet needs food!",
-        {
-          fontSize: "16px",
-          fontFamily: '"Press Start 2P"',
-          align: "center",
-          fill: "#ffffff",
-          padding: { x: 1, y: 1 },
-          backgroundColor: "transparent"
-        }
-      )
-      .setOrigin(0.5, 0)
-      .setScrollFactor(0)
-      .setResolution(3) // Makes text more crisp
-      .setScale(0.5); // Makes text more crisp
-    /*
-    new DevLaunchers.Instructions.InstructionSequence(this, [
-      new DevLaunchers.Instructions.Instruction(
-        this,
-        "This is your new pet",
-        2000
-      ),
-      new DevLaunchers.Instructions.Instruction(
-        this,
-        "Code to care for it",
-        2000
-      )
-    ]);
-*/
-    // Monitor this activity's success conditions
-
-    new DevLaunchers.ProgressMonitor(this, function() {
-      if (this.scene.progressData.numFoodsCreated >= 3) {
-        console.log("SUCCESS!");
-      }
-    });
-
-    this.loadModifyCode();
-  }
-
-  update(time, delta) {}
-
-  /* <Begin> helper functions added by Kris */
-  //
-  //
-
-  addPhysicalRectangle(x, y, width, height, color, alphaIThinkMaybe) {
-    // TODO: alphaIThinkMaybe name change
-    let rect = this.add.rectangle(x, y, width, height, color, alphaIThinkMaybe);
-    rect = this.physics.add.existing(rect, true);
-
-    return rect;
-  }
-
-  loadModifyCode() {
-    // Let's load the modify.js script and run it in this scope!
-    // using this method instead of import to maintain scene scope and keep import/export
-    //    out of the modify.js script. More simple for students to work with
-    /* eslint-disable */
-    var scene = this;
-    let codeText = fetch("../modify.mjs")
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(textString) {
-        evalWithinContext(scene, textString);
-      });
-    /* eslint-enable */
-  }
-
-  /* </End> Helper functions added by kris */
+function setupActivity() {
+  var activity = require("./activity-setup.js");
+  activity.setupActivity(game.scene.scenes[0]);
 }
 
-const config = {
-  type: Phaser.AUTO,
-  width: Math.floor(500 / 3),
-  height: Math.floor(300 / 3),
-  parent: "game-container",
-  pixelArt: true,
-  /*
-  scale: {
-    mode: Phaser.Scale.NONE,
-    autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
-  },
-  */
-  autoRound: false,
-  backgroundColor: "#3333AA",
-  scene: PlayScene,
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: { y: 500 }
-    }
-  }
-};
-
-const game = new Phaser.Game(config);
-let controls;
+// When the game is ready, begin setting up the activity
+game.events.on("ready", function() {
+  /* Only fire scene update event once, so we know the scene is ready
+   * (couldn't attach to 'ready' or 'create' scene events for some reason,
+   * so used this hack */
+  var playScene = game.scene.scenes[0];
+  window.sceneUpdateEventListener = playScene.events.on(
+    "create",
+    setupActivity
+  );
+});
