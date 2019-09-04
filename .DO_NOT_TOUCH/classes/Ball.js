@@ -17,7 +17,8 @@ export default class Ball extends Phaser.Physics.Arcade.Sprite {
       .setInteractive()
       .setOrigin() // fixes interactive offset issue
       .on("pointerdown", function(pointer, localX, localY, event) {
-        // Let's make something happen when we click on this animal
+        // When this ball is clicked, let's make it pop up a bit
+        this.setVelocity(50 - Math.random() * 100, -150);
       });
 
     scene.physics.add.collider(scene.pet, this, () => {

@@ -4,16 +4,14 @@
  * @license      TODO
  */
 
-import Instructions from "./instructions";
-import ProgressMonitor from "./progress-monitor";
+import Activities from "./activities";
 
 /**
  * @namespace DevLaunchers
  */
 
 var DevLaunchers = {
-  Instructions: Instructions,
-  ProgressMonitor: ProgressMonitor
+  Activities: Activities
 };
 
 export default DevLaunchers;

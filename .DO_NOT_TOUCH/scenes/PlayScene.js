@@ -21,6 +21,7 @@ export default class PlayScene extends Phaser.Scene {
     this.load.image("cloud", "/.DO_NOT_TOUCH/assets/cloud.png");
     this.load.image("meat", "/.DO_NOT_TOUCH/assets/meat.png");
     this.load.image("ball", "/.DO_NOT_TOUCH/assets/ball.png");
+    this.load.image("heart", "/.DO_NOT_TOUCH/assets/heart.png");
 
     // Load the pet's spritesheet
     this.load.spritesheet("pet", "/.DO_NOT_TOUCH/assets/pet.png", {

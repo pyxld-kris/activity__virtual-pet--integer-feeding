@@ -7,7 +7,7 @@
 import ProgressMonitor from "./ProgressMonitor";
 
 /**
- * @namespace DevLaunchers.ProgressMonitor
+ * @namespace DevLaunchers.Activities.ProgressMonitor
  */
 
 export default ProgressMonitor;

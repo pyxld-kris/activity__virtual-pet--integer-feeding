@@ -6,14 +6,16 @@
 
 import Instruction from "./Instruction.js";
 import InstructionSequence from "./InstructionSequence.js";
+import Text from "./Text.js";
 
 /**
- * @namespace DevLaunchers.Instructions
+ * @namespace DevLaunchers.Activities.Info
  */
 
-var Instructions = {
+var Info = {
   Instruction: Instruction,
-  InstructionSequence: InstructionSequence
+  InstructionSequence: InstructionSequence,
+  Text: Text
 };
 
-export default Instructions;
+export default Info;

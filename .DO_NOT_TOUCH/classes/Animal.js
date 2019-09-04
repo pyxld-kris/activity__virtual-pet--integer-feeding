@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Heart from "./Heart.js";
 
 export default class Animal extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
@@ -14,8 +15,8 @@ export default class Animal extends Phaser.Physics.Arcade.Sprite {
       .setInteractive()
       .setOrigin() // fixes interactive offset issue
       .on("pointerdown", function(pointer, localX, localY, event) {
-        // Let's make something happen when we click on this animal
-        this.scene.physics.add.sprite(50, 10, "meat");
+        // When this animal is clicked, let's do something!
+        new Heart(this.scene, this.x, this.y);
       });
 
     // Create the animations we need from the pet spritesheet
@@ -36,8 +37,6 @@ export default class Animal extends Phaser.Physics.Arcade.Sprite {
     this.anims.play("pet-idle", true);
 
     // Make sure the scene calls this object's update function every frame
-    //scene.updateGroup.add(this);
-    //scene.sys.updateList.add(this);
     this.updateListener = scene.events.on("update", (time, delta) => {
       this.update(time, delta);
     });

@@ -29,42 +29,28 @@ function loadModifyCode(scene) {
 }
 
 export function setupActivity(scene) {
-  scene.activityText = scene.add
-    .text(
-      Math.floor(scene.game.config.width / 2),
-      Math.floor(scene.game.config.height - 10),
-      "Your pet needs food!",
-      {
-        fontSize: "16px",
-        fontFamily: '"Press Start 2P"',
-        align: "center",
-        fill: "#ffffff",
-        padding: { x: 1, y: 1 },
-        backgroundColor: "transparent"
-      }
-    )
-    .setOrigin(0.5, 0)
-    .setScrollFactor(0)
-    .setResolution(3) // Makes text more crisp
-    .setScale(0.5) // Makes text more crisp
-    .setDepth(100);
-  /*
-  new DevLaunchers.Instructions.InstructionSequence(this, [
-    new DevLaunchers.Instructions.Instruction(
-      this,
+  new DevLaunchers.Activities.Info.Text(
+    scene,
+    Math.floor(scene.game.config.width / 2),
+    Math.floor(scene.game.config.height - 10),
+    "Your pet needs food!"
+  );
+
+  new DevLaunchers.Activities.Info.InstructionSequence(scene, [
+    new DevLaunchers.Activities.Info.Instruction(
+      scene,
       "This is your new pet",
       2000
     ),
-    new DevLaunchers.Instructions.Instruction(
-      this,
+    new DevLaunchers.Activities.Info.Instruction(
+      scene,
       "Code to care for it",
       2000
     )
   ]);
-*/
 
   // Monitor this activity's success conditions
-  new DevLaunchers.ProgressMonitor(scene, function() {
+  new DevLaunchers.Activities.ProgressMonitor(scene, function() {
     if (this.scene.progressData.numFoodsCreated >= 3) {
       //console.log("SUCCESS");
       this.scene.activityText.setText("Yum! You did it!");

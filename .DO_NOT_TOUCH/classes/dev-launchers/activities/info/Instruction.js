@@ -25,7 +25,6 @@ export default class Instruction {
       .setScrollFactor(0)
       .setResolution(3) // Makes text more crisp
       .setScale(0.5); // Makes text more crisp
-
     this.textTween = scene.tweens.add({
       targets: this.text,
       y: halfScreenHeight, // '+=100'
