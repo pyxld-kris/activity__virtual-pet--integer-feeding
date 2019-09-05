@@ -3,6 +3,7 @@ import Phaser from "phaser";
 // Load specific game stuff here
 import Animal from "/.DO_NOT_TOUCH/classes/Animal.js";
 import Ball from "/.DO_NOT_TOUCH/classes/Ball.js";
+import Meat from "/.DO_NOT_TOUCH/classes/Meat.js";
 
 /* Lift classes to global scope */
 (function() {

@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { config } from "./settings/config.js";
 
-const game = new Phaser.Game(config, "Reload this window to see changes!");
+const game = new Phaser.Game(config);
 
 /*
  * Import and set up the specific dev launchers activity code

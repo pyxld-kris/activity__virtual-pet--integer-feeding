@@ -6,6 +6,7 @@
 
 import Info from "./info";
 import ProgressMonitor from "./progress-monitor";
+import Success from "./success";
 
 /**
  * @namespace DevLaunchers.Activities
@@ -13,7 +14,8 @@ import ProgressMonitor from "./progress-monitor";
 
 var Activities = {
   Info: Info,
-  ProgressMonitor: ProgressMonitor
+  ProgressMonitor: ProgressMonitor,
+  Success: Success
 };
 
 export default Activities;

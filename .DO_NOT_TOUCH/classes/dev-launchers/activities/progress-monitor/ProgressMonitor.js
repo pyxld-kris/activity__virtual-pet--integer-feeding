@@ -25,4 +25,9 @@ export default class SuccessMonitor {
       this.progressCheckFunc.call(this);
     }
   }
+
+  destroy() {
+    // Remove this object's update listener from the scene
+    this.scene.events.removeListener("update", this.updateListener);
+  }
 }
