@@ -12,7 +12,7 @@
 
 
 // How many food items should we give to our pet?
-var NUM_FOODS = 3; // Integer variable
+var NUM_FOODS = 0; // Integer variable
 
 /**** GOODBYE! ************************************************/
 /**** Stop Modifying Here! (Unless you want to experiment!) ***/
