@@ -17,6 +17,11 @@ import Meat from "/.DO_NOT_TOUCH/classes/Meat.js";
 
 export default class PlayScene extends Phaser.Scene {
   preload() {
+    this.load.script(
+      "webfont",
+      "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+    );
+
     this.load.image("sky", "/.DO_NOT_TOUCH/assets/sky.png");
     this.load.image("ground", "/.DO_NOT_TOUCH/assets/ground.png");
     this.load.image("cloud", "/.DO_NOT_TOUCH/assets/cloud.png");
